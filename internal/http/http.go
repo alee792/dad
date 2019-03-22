@@ -124,8 +124,8 @@ var gnarlyTemplate = `
 			}
 			.valign{
 				position: relative;
-				top: 33%;
-				transform: translateY(-67%);
+				top: 33%%;
+				transform: translateY(-67%%);
 			}
 		</style>
 	</head>
@@ -135,7 +135,7 @@ var gnarlyTemplate = `
 		<section class="section has-background-light">
 			<div class="column is-centered is-vcentered">
 				<div class="container">
-					<p> %s</p>
+					<p>%s</p>
 				</div>
 				<div class="container">
 					<span class="icon">
