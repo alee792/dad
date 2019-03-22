@@ -3,9 +3,9 @@
 ### Dad is good at retelling jokes, but he's not so good at coming up with his own.
 
 ## Try it out here!
-["Hey, I heard a good joke the other day..."](https://dad-git-master.alee792.now.sh/pkg/now/joke/joke.go)
+["Hey, I heard a good joke the other day..."](https://dadnot.now.sh/joke)
 
-["Is this the kind of stuff you do at work?"](https://dad-git-master.alee792.now.sh/pkg/now/hn/hn.go)
+["Is this the kind of stuff you do at work?"](https://dadnot.now.sh/hn)
 
 *Examples are 1grams*
 

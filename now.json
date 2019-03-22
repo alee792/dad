@@ -7,6 +7,6 @@
     ],
     "routes": [
         {"src": "/hn", "dest": "/pkg/now/hn/hn.go"},
-        {"src": "/joke", "dest": "/pkg/now/joke/$1"}
+        {"src": "/joke", "dest": "/pkg/now/joke/joke.go"}
     ]
 }
