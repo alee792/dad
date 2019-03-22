@@ -2,11 +2,11 @@
     "version": 2,
     "name": "dad",
     "builds": [
-        {"src": "*.go", "use": "@now/go"},
+        {"src": "pkg/now/*/*.go", "use": "@now/go"},
         {"src": "bin/*.json", "use": "@now/static"}
     ],
     "routes": [
-        {"src": "/hn/(.*)", "dest": "/build/hn/hn.go"},
-        {"src": "/joke/(.*)", "dest": "/build/joke/$1"}
+        {"src": "/hn/(.*)", "dest": "/pkg/now/hn/hn.go"},
+        {"src": "/joke/(.*)", "dest": "/pkg/now/joke/$1"}
     ]
 }
