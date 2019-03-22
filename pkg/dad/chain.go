@@ -1,3 +1,5 @@
+// Package dad is an implementation of an n-gram capable Markov Chain.
+// Dad is good at retelling jokes, but he's not so good at coming up with his own.
 package dad
 
 import (
