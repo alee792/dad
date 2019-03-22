@@ -1,5 +1,5 @@
 # Dad
-[![Go Report Card](https://goreportcard.com/badge/github.com/alee792/dad)](https://goreportcard.com/report/github.com/alee792/dad)
+[![Go Report Card](https://goreportcard.com/badge/github.com/alee792/dad)](https://goreportcard.com/report/github.com/alee792/dad) <a href='https://github.com/jpoles1/gopherbadger' target='_blank'>![gopherbadger-tag-do-not-edit](https://img.shields.io/badge/Go%20Coverage-89%25-brightgreen.svg?longCache=true&style=flat)</a>
 ### Dad is good at retelling jokes, but he's not so good at coming up with his own.
 
 Dad reads jokes on icanhazdadjoke.com, and then tries to come up with his own. Results can be...interesting.
