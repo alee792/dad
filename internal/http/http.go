@@ -110,29 +110,39 @@ func (s *Server) GetRealJoke() http.HandlerFunc {
 // gnarlyTemplate for Now.
 var gnarlyTemplate = `
 <html>
-    <head>
+	<head>
         
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Hello Bulma!</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+		<style>
+			p {
+				font-family: 'Slabo 27px', serif;
+			}
+		</style>
+	</head>
 
-    </head>
-
-    <body>
-	 <div class="container">
-	 	%s
-	 </div>
-    </body>
-
-    <footer>
-	<span class="icon">
-	<a href="https://github.com/alee792/dad" title="Source" class="fab fa-github"></a>
-	</span>
-	<span class="icon has-text-info">
-		<a href="https://now.sh" title="Zeit Now" class="fas fa-bolt"></a>
-	</span>
-    </footer>
+		<body>
+		<div class="container">
+		<section class="section has-background-light">
+			<div class="column is-centered is-vcentered">
+				<div class="container">
+					<p> %s</p>
+				</div>
+				<div class="container">
+					<span class="icon">
+						<a href="https://github.com/alee792/dad" title="Source" class="fab fa-github"></a>
+					</span>
+					<span class="icon has-text-info">
+						<a href="https://dad-git-master.alee792.now.sh" title="Zeit Now" class="fas fa-bolt"></a>
+					</span>
+				</div>
+			</div>    
+		</section>
+		</div>
+	</body>
 </html>
 `
