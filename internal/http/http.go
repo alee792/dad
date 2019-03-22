@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"unicode"
 
 	"github.com/pkg/errors"
 
@@ -54,6 +55,9 @@ func NewServer(j Joker, c Chainer, r chi.Router, l *zap.SugaredLogger, cfg Confi
 	if cfg.Addr == "" {
 		cfg.Addr = ":8080"
 	}
+	if cfg.MaxConcurrency < 1 {
+		cfg.MaxConcurrency = 5
+	}
 	s := &Server{
 		Joker:   j,
 		Chainer: c,
@@ -76,7 +80,13 @@ func (s *Server) Routes() {
 // GetJoke generates a joke from the Chainer.
 func (s *Server) GetJoke() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, s.Chainer.Generate(r.Context()))
+		var j string
+		for j == "" {
+			j = s.Chainer.Generate(r.Context())
+		}
+		bb := []byte(j)
+		bb[0] = byte(unicode.ToUpper(rune(bb[0])))
+		fmt.Fprintf(w, string(bb))
 	}
 }
 
@@ -92,5 +102,11 @@ func (s *Server) GetRealJoke() http.HandlerFunc {
 			)
 		}
 		fmt.Fprintf(w, joke)
+	}
+}
+
+// StartWarmUp pipes Joker to Chainer.
+func (s *Server) StartWarmUp() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 	}
 }

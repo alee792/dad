@@ -17,6 +17,10 @@ type RESTClient struct {
 // NewRESTClient returns a client with sensible defaults.
 func NewRESTClient(httpClient *http.Client, cfg Config) *RESTClient {
 	if httpClient == nil {
+		// This is a no bueno and for demonstrative purposes only!
+		// tr := &http.Transport{
+		// 	TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		// }
 		httpClient = http.DefaultClient
 	}
 	if cfg.Addr == "" {
@@ -31,7 +35,12 @@ func NewRESTClient(httpClient *http.Client, cfg Config) *RESTClient {
 
 // GetJoke from ICHDJ.
 func (c *RESTClient) GetJoke(ctx context.Context) (string, error) {
-	resp, err := c.Get(c.Config.Addr)
+	req, err := http.NewRequest(http.MethodGet, c.Config.Addr, nil)
+	if err != nil {
+		return "", errors.Wrap(err, "bad request")
+	}
+	req.Header.Set("Accept", "text/plain")
+	resp, err := c.Do(req)
 	if err != nil {
 		return "", errors.Wrap(err, "HTTP GET failed")
 	}

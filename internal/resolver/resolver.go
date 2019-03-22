@@ -4,14 +4,17 @@ import (
 	"github.com/alee792/dad/internal/http"
 	"github.com/alee792/dad/pkg/dad"
 	"github.com/alee792/dad/pkg/getzit"
+	"github.com/go-chi/chi"
+	"go.uber.org/zap"
 )
 
 // Resolver for a dad service.
 type Resolver struct {
 	HTTP   *http.Server
-	Dad    *dad.Chain
+	Chain  *dad.Chain
 	GQL    *getzit.GraphQLClient
 	REST   *getzit.RESTClient
+	Logger *zap.SugaredLogger
 	Config Config
 }
 
@@ -31,6 +34,49 @@ func NewResolver(cfg Config) *Resolver {
 	return r
 }
 
-
 // ResolveHTTP service.
-func ResolveHTTTP() *http.Server P
+func (r *Resolver) ResolveHTTP() *http.Server {
+	if r.HTTP == nil {
+		s := http.NewServer(
+			r.ResolveREST(),
+			r.ResolveChain(),
+			chi.NewRouter(),
+			r.ResolveLogger(),
+			r.Config.HTTP,
+		)
+		r.HTTP = s
+	}
+	return r.HTTP
+}
+
+// ResolveGQL service.
+func (r *Resolver) ResolveGQL() *getzit.GraphQLClient {
+	if r.GQL == nil {
+		r.GQL = getzit.NewGraphQLClient(r.Config.GQL)
+	}
+	return r.GQL
+}
+
+// ResolveREST service.
+func (r *Resolver) ResolveREST() *getzit.RESTClient {
+	if r.REST == nil {
+		r.REST = getzit.NewRESTClient(nil, r.Config.REST)
+	}
+	return r.REST
+}
+
+// ResolveChain service.
+func (r *Resolver) ResolveChain() *dad.Chain {
+	if r.Chain == nil {
+		r.Chain = dad.NewChain(r.Config.Dad)
+	}
+	return r.Chain
+}
+
+// ResolveLogger service.
+func (r *Resolver) ResolveLogger() *zap.SugaredLogger {
+	if r.Logger == nil {
+		r.Logger = zap.NewExample().Sugar()
+	}
+	return r.Logger
+}

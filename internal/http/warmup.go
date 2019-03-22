@@ -1,7 +1,6 @@
 package http
 
 import (
-	"bytes"
 	"context"
 	"fmt"
 	"io"
@@ -14,18 +13,15 @@ import (
 func (s *Server) WarmUp(ctx context.Context, n int) error {
 	sem := semaphore.NewWeighted(s.Config.MaxConcurrency)
 	group, ctx := errgroup.WithContext(ctx)
-	jokes := new(bytes.Buffer)
-	pipeR, pipeW := io.Pipe()
-	defer pipeR.Close()
+	pR, pW := io.Pipe()
 
-	// Consume reader/channel
+	// Consume reader.
 	group.Go(func() error {
-		s.Chainer.Read(ctx, pipeR)
+		s.Chainer.Read(ctx, pR)
 		return nil
 	})
-
+	// Fan out.
 	for i := 0; i < n; i++ {
-		defer pipeW.Close()
 		sem.Acquire(ctx, 1)
 		group.Go(func() error {
 			defer sem.Release(1)
@@ -33,9 +29,16 @@ func (s *Server) WarmUp(ctx context.Context, n int) error {
 			if err != nil {
 				s.Logger.Errorw("GetJoke failed", "err", err)
 			}
-			jokes.WriteString(fmt.Sprintf("%s\n", j))
+			// Fan in.
+			pW.Write([]byte(fmt.Sprintf("%s\n", j)))
 			return nil
 		})
 	}
+	pW.Close()
+
+	if err := group.Wait(); err != nil {
+		return err
+	}
+	s.Logger.Infow("warmup completet", "count", n)
 	return nil
 }

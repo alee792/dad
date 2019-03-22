@@ -2,29 +2,16 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"log"
-	"strings"
+	"net/http"
 
-	"github.com/alee792/dad/pkg/getzit"
-
-	"github.com/alee792/dad/pkg/dad"
+	"github.com/alee792/dad/internal/resolver"
 )
 
 func main() {
-	ctx := context.Background()
-	cfg := dad.Config{}
-	chain := dad.NewChain(cfg)
-	r := strings.NewReader("hello bye see you")
-	chain.Read(ctx, r)
-
-	c := getzit.NewGraphQLClient(getzit.Config{
-		Addr: "https://icanhazdadjoke.com/graphql",
-	})
-	j, err := c.GetJoke(ctx)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println(j)
+	cfg := resolver.Config{}
+	r := resolver.NewResolver(cfg)
+	s := r.ResolveHTTP()
+	go s.WarmUp(context.Background(), 200)
+	r.ResolveLogger().Infof("Serving on %s", s.Config.Addr)
+	http.ListenAndServe(s.Config.Addr, s.Router)
 }
