@@ -26,8 +26,8 @@ func NewGraphQLClient(cfg Config) *GraphQLClient {
 	return c
 }
 
-// GetJoke from this wonderful service.
-func (c *GraphQLClient) GetJoke(ctx context.Context) (string, error) {
+// Get joke from this wonderful service.
+func (c *GraphQLClient) Get(ctx context.Context) (string, error) {
 	type Data struct {
 		Joke struct {
 			ID        string

@@ -20,13 +20,15 @@ import (
 // Could be his dad, your Uncle, or a website called icanhazdadjoke.
 // Who knows?
 type Joker interface {
-	GetJoke(context.Context) (string, error)
+	Get(context.Context) (string, error)
 }
 
 // Chainer is the API for a Markov Chain.
 type Chainer interface {
 	Read(context.Context, io.Reader)
 	Generate(context.Context) string
+	Save(path string) error
+	Load(path string) (int, error)
 }
 
 // Server manages the dependencies and operations of a Dad service.
@@ -93,7 +95,7 @@ func (s *Server) GetJoke() http.HandlerFunc {
 // GetRealJoke directly from a Joker.
 func (s *Server) GetRealJoke() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		joke, err := s.Joker.GetJoke(r.Context())
+		joke, err := s.Joker.Get(r.Context())
 		if err != nil {
 			http.Error(
 				w,
@@ -102,11 +104,5 @@ func (s *Server) GetRealJoke() http.HandlerFunc {
 			)
 		}
 		fmt.Fprintf(w, joke)
-	}
-}
-
-// StartWarmUp pipes Joker to Chainer.
-func (s *Server) StartWarmUp() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
 	}
 }

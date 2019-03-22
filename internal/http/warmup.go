@@ -25,7 +25,7 @@ func (s *Server) WarmUp(ctx context.Context, n int) error {
 		sem.Acquire(ctx, 1)
 		group.Go(func() error {
 			defer sem.Release(1)
-			j, err := s.Joker.GetJoke(ctx)
+			j, err := s.Joker.Get(ctx)
 			if err != nil {
 				s.Logger.Errorw("GetJoke failed", "err", err)
 			}
@@ -39,6 +39,6 @@ func (s *Server) WarmUp(ctx context.Context, n int) error {
 	if err := group.Wait(); err != nil {
 		return err
 	}
-	s.Logger.Infow("warmup completet", "count", n)
+	s.Logger.Infow("warmup complete", "count", n)
 	return nil
 }

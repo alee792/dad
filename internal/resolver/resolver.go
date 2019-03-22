@@ -3,12 +3,13 @@ package resolver
 import (
 	"github.com/alee792/dad/internal/http"
 	"github.com/alee792/dad/pkg/dad"
+	"github.com/alee792/dad/pkg/dad/storage/json"
 	"github.com/alee792/dad/pkg/getzit"
 	"github.com/go-chi/chi"
 	"go.uber.org/zap"
 )
 
-// Resolver for a dad service.
+// Resolver is a lazy loading dependency resolver.
 type Resolver struct {
 	HTTP   *http.Server
 	Chain  *dad.Chain
@@ -68,7 +69,10 @@ func (r *Resolver) ResolveREST() *getzit.RESTClient {
 // ResolveChain service.
 func (r *Resolver) ResolveChain() *dad.Chain {
 	if r.Chain == nil {
-		r.Chain = dad.NewChain(r.Config.Dad)
+		r.Chain = dad.NewChain(
+			&json.Store{},
+			r.Config.Dad,
+		)
 	}
 	return r.Chain
 }

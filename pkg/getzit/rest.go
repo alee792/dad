@@ -33,8 +33,8 @@ func NewRESTClient(httpClient *http.Client, cfg Config) *RESTClient {
 	return c
 }
 
-// GetJoke from ICHDJ.
-func (c *RESTClient) GetJoke(ctx context.Context) (string, error) {
+// Get joke from ICHDJ.
+func (c *RESTClient) Get(ctx context.Context) (string, error) {
 	req, err := http.NewRequest(http.MethodGet, c.Config.Addr, nil)
 	if err != nil {
 		return "", errors.Wrap(err, "bad request")

@@ -10,11 +10,14 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/alee792/dad/pkg/dad/storage/json"
 )
 
 // Chain parses and stores word level n-grams
 // and generates Markov chains.
 type Chain struct {
+	Store  Storage
 	Config Config
 	// Key: n-gram, value: possible suffixes.
 	grams map[string][]string
@@ -30,12 +33,16 @@ type Config struct {
 
 // NewChain uses a Config to return a Chain
 // with sensible defaults.
-func NewChain(cfg Config) *Chain {
+func NewChain(store Storage, cfg Config) *Chain {
 	if cfg.Order < 1 {
 		cfg.Order = 2
 	}
+	if store == nil {
+		store = &json.Store{}
+	}
 	rand.Seed(time.Now().Unix())
 	c := &Chain{
+		Store:  store,
 		grams:  make(map[string][]string),
 		mux:    &sync.Mutex{},
 		Config: cfg,
@@ -143,12 +150,6 @@ func (c *Chain) putGram(k string, v []string) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 	// Avoid overwriting gram values that might seem terminal!
-	if v == nil {
-		if _, ok := c.grams[k]; ok {
-			return
-		}
-		v = []string{}
-	}
 	c.grams[k] = append(c.grams[k], v...)
 }
 
