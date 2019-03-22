@@ -4,14 +4,20 @@
 
 Dad reads jokes on icanhazdadjoke.com, and then tries to come up with his own. Results can be...interesting.
 > One about clocks. It's because I woke up the sea lion?
+
 > The hokey pokey, but there is really need to soap, but now that’s a forest and put down!
+
 > Nailed it!
 
 Sometimes, Dad will see a cool story on [HackerNews](https://news.ycombinator.com/news) and try to talk to you about it. Oddly enough, these mangled headlines sound like pitches from Y Combinator's most recent cohort.
 > To bring deep learning to use Outlook
+
 > To a month, Without NYT or Go?
+
 > 11 Press Kits from Python APIs with specially crafted D-Bus message
+
 > Salt water tanks pose health data to be taught code
+
 > Powered by PHP (2017)
 
 ## Thanks 
