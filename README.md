@@ -3,9 +3,9 @@
 ### Dad is good at retelling jokes, but he's not so good at coming up with his own.
 
 ## Try it out here!
-[Dad Retells a Joke](https://dad-git-master.alee792.now.sh/pkg/now/joke/joke.go)
+["Hey I heard something earler..."](https://dad-git-master.alee792.now.sh/pkg/now/joke/joke.go)
 
-["I saw an article today..."](https://dad-get-master.alee792.now.sh/pkg/now/hn/hn.go)
+["Is this the kind of stuff you do at work?"](https://dad-get-master.alee792.now.sh/pkg/now/hn/hn.go)
 
 Dad reads jokes on icanhazdadjoke.com, and then tries to come up with his own. Results can be...interesting.
 > One about clocks. It's because I woke up the sea lion?  
@@ -41,4 +41,4 @@ N-grams are automatically saved and loaded in `./bin` with the format `{n}grams-
 
 ## Future work
 1. More memory considerate data structure.
-1. Additional flags for port, warm up size, etc.
+2. Additional flags for port, warm up size, etc.
