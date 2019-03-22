@@ -7,6 +7,8 @@
 
 ["Is this the kind of stuff you do at work?"](https://dad-git-master.alee792.now.sh/pkg/now/hn/hn.go)
 
+*Examples are 1grams*
+
 Dad reads jokes on icanhazdadjoke.com, and then tries to come up with his own. Results can be...interesting.
 > One about clocks. It's because I woke up the sea lion?  
 > The hokey pokey, but there is really need to soap, but now that’s a forest and put down!

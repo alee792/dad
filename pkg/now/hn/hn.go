@@ -9,7 +9,7 @@ import (
 var s *now.Server
 
 func init() {
-	s = now.Init("hn", 2)
+	s = now.Init("hn", 1)
 }
 
 // Handler is an artifact for Now.
