@@ -122,11 +122,16 @@ var gnarlyTemplate = `
 			p {
 				font-family: 'Slabo 27px', serif;
 			}
+			.valign{
+				position: relative;
+				top: 33%;
+				transform: translateY(-67%);
+			}
 		</style>
 	</head>
 
 		<body>
-		<div class="container">
+		<div class="container valign">
 		<section class="section has-background-light">
 			<div class="column is-centered is-vcentered">
 				<div class="container">
