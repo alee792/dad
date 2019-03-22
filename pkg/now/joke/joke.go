@@ -15,4 +15,5 @@ func init() {
 // Handler is an artifact for Now.
 func Handler(w http.ResponseWriter, r *http.Request) {
 	s.GetJoke()(w, r)
+	w.Write([]byte("powered by github.com/alee792/dad"))
 }
