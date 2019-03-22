@@ -1,6 +1,7 @@
 {
     "version": 2,
     "name": "dad",
+    "alias": "dadnot.now.sh",
     "builds": [
         {"src": "pkg/now/*/*.go", "use": "@now/go"},
         {"src": "bin/*.json", "use": "@now/static"}
