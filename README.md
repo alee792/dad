@@ -44,3 +44,4 @@ N-grams are automatically saved and loaded in `./bin` with the format `{n}grams-
 ## Future work
 1. More memory considerate data structure.
 2. Additional flags for port, warm up size, etc.
+3. Allow query params to dictate ngram order.
