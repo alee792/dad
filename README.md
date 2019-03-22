@@ -1,4 +1,5 @@
 # Dad
+[![Go Report Card](https://goreportcard.com/badge/github.com/alee792/dad)](https://goreportcard.com/report/github.com/alee792/dad)
 ### Dad is good at retelling jokes, but he's not so good at coming up with his own.
 
 Dad reads jokes on icanhazdadjoke.com, and then tries to come up with his own. Results can be...interesting.

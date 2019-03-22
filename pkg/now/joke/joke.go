@@ -1,4 +1,4 @@
-package main
+package joke
 
 import (
 	"net/http"
@@ -16,5 +16,3 @@ func init() {
 func Handler(w http.ResponseWriter, r *http.Request) {
 	s.GetJoke()(w, r)
 }
-
-func main() {}
