@@ -6,7 +6,7 @@
         {"src": "bin/*.json", "use": "@now/static"}
     ],
     "routes": [
-        {"src": "/hn/(.*)", "dest": "/pkg/now/hn/hn.go"},
-        {"src": "/joke/(.*)", "dest": "/pkg/now/joke/$1"}
+        {"src": "/hn", "dest": "/pkg/now/hn/hn.go"},
+        {"src": "/joke", "dest": "/pkg/now/joke/$1"}
     ]
 }

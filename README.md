@@ -2,6 +2,11 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/alee792/dad)](https://goreportcard.com/report/github.com/alee792/dad) <a href='https://github.com/jpoles1/gopherbadger' target='_blank'>![gopherbadger-tag-do-not-edit](https://img.shields.io/badge/Go%20Coverage-89%25-brightgreen.svg?longCache=true&style=flat)</a>
 ### Dad is good at retelling jokes, but he's not so good at coming up with his own.
 
+## Try it out here!
+[Dad Retells a Joke](https://dad-git-master.alee792.now.sh/pkg/now/joke/joke.go)
+
+["I saw an article today..."](https://dad-get-master.alee792.now.sh/pkg/now/hn/hn.go)
+
 Dad reads jokes on icanhazdadjoke.com, and then tries to come up with his own. Results can be...interesting.
 > One about clocks. It's because I woke up the sea lion?
 
@@ -38,7 +43,7 @@ To run in HackerNews mode, simply supply a flag, `./dad -s=hn`. The routes are t
 By default, Dad runs using 2grams. Set n to change the order of the ngrams, e.g. `./dad -n=1`
 
 ## Caching
-N-grams are automatically saved and loaded in `./bin` with the format `{n}grams-{source}.json`. Some prepopulated 1grams are included.
+N-grams are automatically saved and loaded in `./bin` with the format `{n}grams-{source}.json`. Some prepopulated 1 and 2 grams are included.
 
 ## Future work
 1. More memory considerate data structure.
