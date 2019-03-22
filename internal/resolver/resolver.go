@@ -5,6 +5,7 @@ import (
 	"github.com/alee792/dad/pkg/dad"
 	"github.com/alee792/dad/pkg/dad/storage/json"
 	"github.com/alee792/dad/pkg/getzit"
+	"github.com/alee792/dad/pkg/hn"
 	"github.com/go-chi/chi"
 	"go.uber.org/zap"
 )
@@ -16,15 +17,18 @@ type Resolver struct {
 	GQL    *getzit.GraphQLClient
 	REST   *getzit.RESTClient
 	Logger *zap.SugaredLogger
+	HN     *hn.Client
 	Config Config
 }
 
 // Config for Resolver.
 type Config struct {
-	HTTP http.Config
-	Dad  dad.Config
-	GQL  getzit.Config
-	REST getzit.Config
+	Source string
+	HTTP   http.Config
+	Dad    dad.Config
+	HN     hn.Config
+	GQL    getzit.Config
+	REST   getzit.Config
 }
 
 // NewResolver is created from a Config.
@@ -39,7 +43,7 @@ func NewResolver(cfg Config) *Resolver {
 func (r *Resolver) ResolveHTTP() *http.Server {
 	if r.HTTP == nil {
 		s := http.NewServer(
-			r.ResolveREST(),
+			r.ResolveJoker(),
 			r.ResolveChain(),
 			chi.NewRouter(),
 			r.ResolveLogger(),
@@ -50,16 +54,37 @@ func (r *Resolver) ResolveHTTP() *http.Server {
 	return r.HTTP
 }
 
-// ResolveGQL service.
-func (r *Resolver) ResolveGQL() *getzit.GraphQLClient {
+// ResolveJoker service.
+func (r *Resolver) ResolveJoker() http.Joker {
+	switch r.Config.Source {
+	case "hn":
+		return r.ResolveHN()
+	case "joke":
+		return r.ResolveJokeREST()
+	default:
+		r.ResolveLogger().Fatal("%s is not a valid source", r.Config.Source)
+	}
+	return nil
+}
+
+// ResolveHN service.
+func (r *Resolver) ResolveHN() *hn.Client {
+	if r.HN == nil {
+		r.HN = hn.NewClient(nil, r.Config.HN)
+	}
+	return r.HN
+}
+
+// ResolveJokeGQL service.
+func (r *Resolver) ResolveJokeGQL() *getzit.GraphQLClient {
 	if r.GQL == nil {
 		r.GQL = getzit.NewGraphQLClient(r.Config.GQL)
 	}
 	return r.GQL
 }
 
-// ResolveREST service.
-func (r *Resolver) ResolveREST() *getzit.RESTClient {
+// ResolveJokeREST service.
+func (r *Resolver) ResolveJokeREST() *getzit.RESTClient {
 	if r.REST == nil {
 		r.REST = getzit.NewRESTClient(nil, r.Config.REST)
 	}

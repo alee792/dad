@@ -16,11 +16,13 @@ import (
 func main() {
 	fs := flag.NewFlagSet("", flag.ExitOnError)
 	var (
+		src   = fs.String("s", "joke", "the source of dad's wisdom")
 		order = fs.Int("n", 2, "the order (size) of an n-gram")
 	)
 	ff.Parse(fs, os.Args[1:])
 
 	cfg := resolver.Config{
+		Source: *src,
 		Dad: dad.Config{
 			Order: *order,
 		},
@@ -30,7 +32,7 @@ func main() {
 
 	// Prime the Server.
 	s := r.ResolveHTTP()
-	path := fmt.Sprintf("./bin/%dgrams.json", *order)
+	path := fmt.Sprintf("./bin/%dgrams-%s.json", *order, *src)
 	go func() {
 		if err := s.WarmUp(context.Background(), 200); err != nil {
 			log.Warnw("could not seed grams from API", "err", err)

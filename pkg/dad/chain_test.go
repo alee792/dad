@@ -18,7 +18,7 @@ type fields struct {
 }
 
 func TestNewChain(t *testing.T) {
-	c := dad.NewChain(dad.Config{})
+	c := dad.NewChain(nil, dad.Config{})
 	if c.Config.Order < 1 {
 		t.Fatalf("expected non-zero, positive default")
 	}
@@ -274,7 +274,7 @@ func defaultFields(t *testing.T) fields {
 }
 
 func defaultChain(t *testing.T) *dad.Chain {
-	return dad.NewChain(defaultConfig(t))
+	return dad.NewChain(nil, defaultConfig(t))
 }
 
 func defaultConfig(t *testing.T) dad.Config {
