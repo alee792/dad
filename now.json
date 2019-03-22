@@ -2,7 +2,8 @@
     "version": 2,
     "name": "dad",
     "builds": [
-        {"src": "*.go", "use": "@now/go"}
+        {"src": "*.go", "use": "@now/go"},
+        {"src": "bin/*.json", "use": "@now/static"}
     ],
     "routes": [
         {"src": "/hn/(.*)", "dest": "/build/hn/hn.go"},
