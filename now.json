@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "name": "dad",
+    "builds": [
+        {"src": "*.go", "use": "@now/go"}
+    ],
+    "routes": [
+        {"src": "/hn/(.*)", "dest": "/build/hn/hn.go"},
+        {"src": "/joke/(.*)", "dest": "/build/joke/$1"}
+    ]
+}
