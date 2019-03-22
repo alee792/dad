@@ -5,7 +5,7 @@
 ## Try it out here!
 ["Hey I heard something earler..."](https://dad-git-master.alee792.now.sh/pkg/now/joke/joke.go)
 
-["Is this the kind of stuff you do at work?"](https://dad-get-master.alee792.now.sh/pkg/now/hn/hn.go)
+["Is this the kind of stuff you do at work?"](https://dad-git-master.alee792.now.sh/pkg/now/hn/hn.go)
 
 Dad reads jokes on icanhazdadjoke.com, and then tries to come up with his own. Results can be...interesting.
 > One about clocks. It's because I woke up the sea lion?  
