@@ -1,12 +1,4 @@
 # Dad
+### Dad is good at retelling jokes, but he's not so good at coming up with his own.
 
-Arguments
-* --ngrams, -n (int): ngrams to use
-* --max: max # words
-* --min: min # of words
-
-Consume: io.Reader
-Produce: io.Writer
-
-Consume: Dad Joke API
-Produce: CLI/REST
+Inspired by this [codewalk](https://golang.org/doc/codewalk/markov/). Enhanced with configurable n-gram levels and a more legible, unclever implementattion.
